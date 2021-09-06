@@ -123,7 +123,7 @@ public class UserService{// implements UserDetailsService {
 
         if(registerUserRole==null){
            UserRole role=userRoleRepository.findByRole(ERoles.ROLE_USER)
-           .orElseThrow(()->new RuntimeException("HATA: VERITABANINDA ROLE KAYITLI DEGIL")) ;
+           .orElseThrow(()->new RuntimeException("Error: Database do not have the Role")) ;
             roles.add(role);
         }else {
             registerUserRole
@@ -133,14 +133,14 @@ public class UserService{// implements UserDetailsService {
 
                             case "admin":
                             UserRole adminRole=userRoleRepository.findByRole(ERoles.ROLE_ADMIN)
-                                    .orElseThrow(()->new RuntimeException("HATA: VERITABANINDA ROLE KAYITLI DEGIL"));
+                                    .orElseThrow(()->new RuntimeException("Error: Database do not have the Role"));
 
                             roles.add(adminRole);
                             break;
 
                             case "employee":
                                 UserRole employeeRole=userRoleRepository.findByRole(ERoles.ROLE_EMPLOYEE)
-                                        .orElseThrow(()->new RuntimeException("HATA: VERITABANINDA ROLE KAYITLI DEGIL"));
+                                        .orElseThrow(()->new RuntimeException("Error: Database do not have the Role"));
 
                                 roles.add(employeeRole);
                                 break;
@@ -148,7 +148,7 @@ public class UserService{// implements UserDetailsService {
                             default:
 
                                 UserRole DefaultRole=userRoleRepository.findByRole(ERoles.ROLE_USER)
-                                        .orElseThrow(()->new RuntimeException("HATA: VERITABANINDA ROLE KAYITLI DEGIL")) ;
+                                        .orElseThrow(()->new RuntimeException("Error: Database do not have the Role")) ;
                                 roles.add(DefaultRole);
 
                         }
@@ -158,7 +158,7 @@ public class UserService{// implements UserDetailsService {
             userRepository.save(newUserCreate);
         }
 
-        return ResponseEntity.ok(new MessageRequest("Kullanici basarili kayit edildi"));
+        return ResponseEntity.ok(new MessageRequest("New User is registered successfully "));
 
 
     }
