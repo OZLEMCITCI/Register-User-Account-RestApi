@@ -112,7 +112,9 @@ public class UserService{// implements UserDetailsService {
                 registerequest.getLastname(),
                 registerequest.getUsername(),
                 passwordEncoder.encode(registerequest.getPassword()),
-                registerequest.getEmail()
+                registerequest.getEmail(),
+                registerequest.getAddress(),
+                registerequest.getMobilePhoneNumber()
                 );
 
         Set<String> registerUserRole=registerequest.getRoles();

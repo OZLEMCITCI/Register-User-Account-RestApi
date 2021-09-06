@@ -21,12 +21,15 @@ public class UserServiceImpl implements UserDetails {
     private String lastname;
     private String username;
 
+
     @JsonIgnore
     private String password;
     private String email;
+    private String address;
+    private String mobilePhoneNumber;
     private Collection<? extends GrantedAuthority>authorities;
 
-    public UserServiceImpl(Long id, String ssn, String firstname, String lastname, String username, String password, String email, Collection<? extends GrantedAuthority> authorities) {
+    public UserServiceImpl(Long id, String ssn, String firstname, String lastname, String username, String password, String email,String address,String mobilePhoneNumber, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.ssn = ssn;
         this.firstname = firstname;
@@ -35,6 +38,8 @@ public class UserServiceImpl implements UserDetails {
         this.password = password;
         this.email = email;
         this.authorities = authorities;
+        this.address=address;
+        this.mobilePhoneNumber=mobilePhoneNumber;
     }
 
     public static UserServiceImpl copyUser(User user){
@@ -49,11 +54,22 @@ public class UserServiceImpl implements UserDetails {
                 user.getLastname(),
                 user.getUsername(),
                 user.getPassword(),
-                user.getEmail(),authorityList);
+                user.getEmail(),
+                user.getAddress(),
+                user.getMobilePhoneNumber(),
+                authorityList);
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getMobilePhoneNumber() {
+        return mobilePhoneNumber;
     }
 
     public String getSsn() {
